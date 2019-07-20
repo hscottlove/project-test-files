@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
+const db = require('./db/dogs.json')
 
 // SECTION MIDDLEWARE
 app.use(express.json());
@@ -12,14 +13,28 @@ app.get('/', (req, res) => {
     res.sendFile(`${__dirname}/views/index.html`);
 });
 
+// NOTE TEST DATA
+
+
+
+
+
+// SECTION ROUTES
+app.get('/api/v1/dogs', (req, res) => {
+   res.status(200).json({
+       status: 200,
+       data: db.dogs
+   })
+});
+
 
 app.post('/', (req, res) => {
     
 });
 
-
-// SECTION ROUTES
-
+app.patch('/', (req, res) => {
+    
+});
 
 
 // SECTION SERVER LISTNER
