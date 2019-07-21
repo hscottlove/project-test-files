@@ -2,7 +2,7 @@
 const express = require('express');
 const app = express();
 const PORT = 3000;
-const db = require('./db/dogs.json')
+const fs = require('fs');
 
 // SECTION MIDDLEWARE
 app.use(express.json());
@@ -14,27 +14,32 @@ app.get('/', (req, res) => {
 });
 
 // NOTE TEST DATA
-
-
-
+const dogs = JSON.parse(fs.readFileSync(`${__dirname}/db/dogs.json`));
 
 
 // SECTION ROUTES
 app.get('/api/v1/dogs', (req, res) => {
    res.status(200).json({
        status: 200,
-       data: db.dogs
+       numberDogs: dogs.length,
+       data: dogs
    })
 });
 
 
-app.post('/', (req, res) => {
-    
+app.post('/api/v1/dogs', (req, res) => {
+    console.log(req.body);
+    res.send('Done');
+
+    // const newDog = req.body
+    // res.status(200).json({
+    //     status: 200,
+    //     numberDogs: dogs.length,
+    //     data: dogs
+    // })
 });
 
-app.patch('/', (req, res) => {
-    
-});
+
 
 
 // SECTION SERVER LISTNER
