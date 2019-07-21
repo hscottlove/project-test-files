@@ -28,10 +28,23 @@ app.get('/api/v1/dogs', (req, res) => {
 
 
 app.post('/api/v1/dogs', (req, res) => {
-    console.log(req.body);
     
+    const newId = dogs[dogs.length - 1].id + 1;
+    const newDog = Object.assign({
+        id: newId,
+    }, req.body);
     
-    res.send('Done');
+    tours.push(newDog);
+
+    fs.writeFile(`${__dirname}/db/dogs.json`, JSON.stringify(dogs), err => {
+        res.status(201).json({
+            status: 201,
+            data: {
+                dog: newDog
+            }
+        });
+    });
+    
 
     // const newDog = req.body
     // res.status(200).json({
