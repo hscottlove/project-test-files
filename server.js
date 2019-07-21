@@ -54,6 +54,20 @@ app.post('/api/v1/dogs', (req, res) => {
     // })
 });
 
+app.get('/api/v1/dogs/:id', (req, res) => {
+    console.log(req.params);
+    const id = req.params.id * 1;
+
+    const dog = dogs.find(el => el.id === id)
+
+    res.status(200).json({
+        status: 'success',
+        data: {
+            dog
+        }
+    });
+});
+
 
 
 
