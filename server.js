@@ -29,6 +29,8 @@ app.get('/api/v1/dogs', (req, res) => {
 
 app.post('/api/v1/dogs', (req, res) => {
     console.log(req.body);
+    
+    
     res.send('Done');
 
     // const newDog = req.body
